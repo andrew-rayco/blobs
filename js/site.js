@@ -4,6 +4,7 @@ var currentColor;
 
 
 space.on('mousemove', getPosition);
+space.on('taphold', addDiv)
 space.on('mousemove', addDiv);
 space.on('mousewheel', changeBackground)
 
