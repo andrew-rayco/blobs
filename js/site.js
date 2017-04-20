@@ -1,15 +1,30 @@
 var space = $('.space');
-// var shape = $('.shape');
 var currentColor;
-var randomNumberR = 172;
-var randomNumberG = 172;
-var randomNumberB = 172;
 
-space.on('mousemove', getPosition);
 space.on('taphold', getPosition);
 space.on('taphold', addDiv);
 space.on('mousemove', addDiv);
-space.on('mousewheel', changeBackground)
+
+function addDiv(evt) {
+  var htmlString = '<div class="shape"></div>';
+  space.append(htmlString);
+  addBlob(evt);
+}
+
+function addBlob(evt) {
+  getPosition(evt);
+  var randomNumber = Math.floor(Math.random()*70 + 1);
+  var shape = $('.shape');
+  var lastShape = shape.last();
+  lastShape.css({
+    'width': randomNumber,
+    'height': randomNumber,
+    'background-color': currentColor,
+    'left': evt.clientX-(randomNumber/2),
+    'top': evt.clientY-(randomNumber/2)
+  });
+  lastShape.delay(8000).fadeOut(2000);
+}
 
 function getPosition(evt) {
   var convertedX = evt.clientX/window.innerWidth*100;
@@ -21,30 +36,10 @@ function getPosition(evt) {
   generateColor(xPercent, yPercent, zPercent);
 }
 
-function changeBackground(evt) {
-  randomNumberR -= 5;
-  randomNumberG += 5;
-  randomNumberB += 5;
-  space.css('background-color', 'rgb('+randomNumberR+','+randomNumberG+','+randomNumberB+')');
-}
-
 function generateColor(x, y, z) {
   currentColor = 'rgb('+x+', '+y+', '+z+')'
-  // space.css('background-color', currentColor);
 }
 
-function addDiv(evt) {
-  var randomNumber = Math.floor(Math.random()*70 + 1);
-  var htmlString = '<div class="shape"></div>';
-  var shape = $('.shape');
-  var lastShape = shape.last();
-  space.append(htmlString);
-
-  lastShape.css('width', randomNumber);
-  lastShape.css('height', randomNumber);
-  lastShape.css('background-color', currentColor);
-  lastShape.css('left', evt.clientX-(randomNumber/2));
-  lastShape.css('top', evt.clientY-(randomNumber/2));
-}
-var spaceText = space.children();
-space.children().fadeOut(2000);
+// page text
+$('.title').hide().show().delay(3000).fadeOut(2000).delay(5000).fadeIn(2000).delay(3000).fadeOut(1000);
+$('.seriously').hide().text('That\'s literally all this is.').delay(10000).fadeIn(2000).delay(3000).fadeOut(1000);
