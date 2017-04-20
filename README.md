@@ -1,2 +1,2 @@
-# sprint-9
+# blobs
 JavaScript play session
