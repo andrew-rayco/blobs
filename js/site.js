@@ -39,7 +39,3 @@ function getPosition(evt) {
 function generateColor(x, y, z) {
   currentColor = 'rgb('+x+', '+y+', '+z+')'
 }
-
-// page text
-$('.title').hide().show().delay(3000).fadeOut(2000).delay(5000).fadeIn(2000).delay(3000).fadeOut(1000);
-$('.seriously').hide().text('Just ').delay(10000).fadeIn(2000).delay(3000).fadeOut(1000);
